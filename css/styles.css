@@ -11,20 +11,25 @@ body {
     padding: 2em;
 }
 
+.container.main {
+    margin-bottom: 2rem;
+    padding-top: 0;
+}
+
 header {
     background-color: #1a1a1a;
-    padding: 1rem 0;
+    padding-top: 1rem;
     position: sticky;
     top: 0;
     left: 0;
     z-index: 1;
 }
 
-header + h1 {
-    margin-top: 0;
+header > h1 {
+    margin: 0 0 0.5rem 0;
 }
 
-header + h2 {
+header > h2 {
     margin-top: 0.25rem;
 }
 
@@ -117,7 +122,7 @@ h2 {
 }
 
 .temtem-name, .dojo-master {
-    font-size: clamp(16px, 2.5vw, 22px);
+    font-size: clamp(1rem, 2.5vw, 22px);
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -125,7 +130,7 @@ h2 {
 }
 
 .temtem-number, .dojo-name {
-    font-size: clamp(13px, 2vw, 16px);
+    font-size: clamp(13px, 2vw, 1rem);
     color: #aaa;
     font-family: 'Inter', sans-serif;
     font-weight: 400;
@@ -150,7 +155,7 @@ h2 {
     border-radius: 20px;
     padding: clamp(0.1rem, 0.5vw, 0.2rem) clamp(0.4rem, 1vw, 0.6rem);
     margin: 0;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -187,6 +192,7 @@ h2 {
 }
 
 .dojo-type.extra-count > p{
+    font-size: 0.8rem;
     right: unset;
     top: unset;
 }
@@ -242,7 +248,7 @@ hr {
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     margin-bottom: 1rem;
     transition: background-color 0.3s;
     position: relative;
@@ -252,7 +258,6 @@ hr {
 
 .back-button:hover {
     background-color: #2f2f2f;
-    transform: translateY(-8px);
 }
 
 .dojo-detail-container, .temtem-detail-container {
@@ -303,7 +308,7 @@ hr {
 
 .dojo-info > p, .temtem-info > p {
     margin: 0;
-    font-size: clamp(16px, 2.5vw, 20px);
+    font-size: clamp(1rem, 2.5vw, 20px);
     font-family: 'Inter', sans-serif;
     line-height: 1.4;
 }
@@ -347,7 +352,7 @@ hr {
     padding: 0.75rem 1rem 0.75rem 0;
     margin: 0 0 0.5rem 0;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -373,7 +378,7 @@ hr {
     border-radius: 5px;
     color: #000;
     padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.6rem, 1.2vw, 1rem);
-    font-size: 16px;
+    font-size: 1rem;
     font-family: 'Rubik', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -397,8 +402,8 @@ hr {
 }
 
 .matchup-type .type-image-container {
-    width: clamp(16px, 2vw, 20px);
-    height: clamp(16px, 2vw, 20px);
+    width: clamp(1rem, 2vw, 20px);
+    height: clamp(1rem, 2vw, 20px);
 }
 
 .matchup-type p {
@@ -463,8 +468,8 @@ hr {
 }
 
 .evolution-image-container {
-    width: clamp(60px, 8vw, 100px);
-    height: clamp(60px, 8vw, 100px);
+    width: clamp(80px, 8vw, 100px);
+    height: clamp(80px, 8vw, 100px);
     position: relative;
     flex-shrink: 0;
 }
@@ -497,7 +502,7 @@ hr {
 }
 
 .evolution-name {
-    font-size: clamp(16px, 2.5vw, 22px);
+    font-size: clamp(1rem, 2.5vw, 22px);
     font-weight: 600;
     margin-bottom: 0.25rem;
     font-family: 'Poppins', sans-serif;
@@ -505,7 +510,7 @@ hr {
 }
 
 .evolution-stage-text {
-    font-size: 16px;
+    font-size: 1rem;
     color: #aaa;
     font-family: 'Inter', sans-serif;
     line-height: 1.3;
@@ -523,7 +528,7 @@ hr {
     font-style: italic;
     text-align: center;
     margin: 0;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .temtem-item:hover, .dojo-item:hover {
@@ -540,7 +545,7 @@ hr {
     .container {
         margin: 0 auto;
         max-width: 80vw;
-        padding: 30px;
+        padding: 2rem;
     }
     
     .temtem-list, .dojo-list {
@@ -569,7 +574,7 @@ hr {
     }
     
     .temtem-number, .dojo-name {
-        font-size: 16px;
+        font-size: 1rem;
     }
     
     .evolution-arrow {
@@ -618,11 +623,11 @@ hr {
 
 @media (max-width: 768px) {
     .container {
-        padding: 15px;
+        padding: 0 1rem;
     }
 
     .current-badge {
-        top: -20px;
+        top: -23px;
     }
     
     .dojo-header .dojo-image-container, .temtem-header .temtem-image-container {
@@ -635,7 +640,7 @@ hr {
     }
     
     .dojo-info p, .temtem-info p {
-        font-size: 16px;
+        font-size: 1rem;
     }
 
     #evolution-chain {
@@ -654,22 +659,26 @@ hr {
     }
     
     .evolution-name {
-        font-size: 16px;
+        font-size: 1rem;
     }
     
     .matchup-types {
         justify-content: flex-start;
     }
+
+    .matchup-type {
+        min-width: 4.75rem;
+    }
     
     .matchup-section h3 {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         padding: 0.5rem 0.75rem 0.5rem 0;
     }
     
     .site-nav a {
         margin: 0.25rem;
         padding: 0.4rem 0.8rem;
-        font-size: 16px;
+        font-size: 1rem;
     }
 }
 
@@ -677,21 +686,29 @@ hr {
     .temtem-item, .dojo-item {
         padding: 0.5rem;
     }
+
+    .temtem-header, .dojo-header {
+        gap: 0.75rem;
+    }
+    
+    .temtem-header .temtem-image-container {
+        padding-right: 0.75rem;
+    }
     
     .temtem-image-container img, .dojo-image-container img {
         width: 100px;
     }
     
     .temtem-name, .dojo-master {
-        font-size: 16px;
+        font-size: 1rem;
     }
     
     .temtem-number, .dojo-name {
-        font-size: 13px;
+        font-size: 0.9rem;
     }
     
     .back-button {
-        font-size: 12px;
-        padding: 0.4rem 0.8rem;
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
     }
 }
