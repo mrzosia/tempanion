@@ -133,12 +133,33 @@ async function populateDojoDetails(dojo) {
 
 // Function to go back to the previous page
 function goBack() {
-    window.location.href = "dojos.html";
+    sessionStorage.setItem('backButtonClicked', 'true');
+    window.history.back();
 }
 
 // Load dojo data and populate details
 window.addEventListener("load", () => {
-    window.scrollTo({ top: 0 });
+
+    if (sessionStorage.getItem('backButtonClicked') === 'true') {
+        
+        // Disable scroll restoration temporarily
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Force scroll multiple times to override browser behavior
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        
+        setTimeout(() => {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            // Re-enable scroll restoration
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'auto';
+            }
+        }, 50);
+        
+        sessionStorage.removeItem('backButtonClicked');
+    }
 
     const CACHE_KEY = "dojoData";
     const EXPIRY_KEY = "dojoDataExpiry";
