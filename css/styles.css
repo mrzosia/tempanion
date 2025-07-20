@@ -423,11 +423,24 @@ hr {
     font-size: 24px;
 }
 
-.evolution-chain {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+#evolution-chain {
+    display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.evolution-stage {
+    flex: 1 1 200px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.evolution-arrow {
+    flex: 0 0 auto;
 }
 
 .evolution-stage {
@@ -502,7 +515,6 @@ hr {
     rotate: -90deg;
     font-size: clamp(24px, 4vw, 36px);
     color: #aaa;
-    margin-left: auto;
     font-weight: bold;
 }
 
@@ -526,13 +538,22 @@ hr {
 
 @media (min-width: 1200px) {
     .container {
+        margin: 0 auto;
+        max-width: 80vw;
         padding: 30px;
     }
     
     .temtem-list, .dojo-list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 15px;
+    }
+
+    .temtem-list {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .dojo-list {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .temtem-item, .dojo-item {
@@ -617,12 +638,19 @@ hr {
         font-size: 16px;
     }
 
-    .evolution-arrow {
-        rotate: 0deg;
+    #evolution-chain {
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .evolution-stage {
+        flex: none;
+        width: 100%;
+        max-width: none;
     }
 
-    .evolution-chain {
-        grid-template-columns: 1fr;
+    .evolution-arrow {
+        rotate: 0deg;
     }
     
     .evolution-name {

@@ -33,7 +33,6 @@ function createEvolutionStage(evolutionData, isCurrent = false) {
             <div class="evolution-name">${evolutionData.name}</div>
             <div class="evolution-stage-text">Stage ${evolutionData.stage}</div>
         </div>
-        ${!isCurrent && evolutionData.stage < 2 ? '<div class="evolution-arrow">↓</div>' : ''}
     `;
     
     // Make evolution stage clickable if it's not the current one
@@ -122,12 +121,23 @@ function populateTemtemDetails(temtem) {
     // Populate evolution chain
     const evolutionContainer = document.getElementById('evolution-chain');
     evolutionContainer.innerHTML = '';
-    
+
     if (temtem.evolution && temtem.evolution.evolutionTree) {
-        temtem.evolution.evolutionTree.forEach(evolution => {
+        const evolutionTree = temtem.evolution.evolutionTree;
+        const totalStages = evolutionTree.length;
+        
+        evolutionTree.forEach((evolution, index) => {
             const isCurrent = evolution.number === temtem.number;
             const evolutionStage = createEvolutionStage(evolution, isCurrent);
             evolutionContainer.appendChild(evolutionStage);
+            
+            // Add arrow after each stage except the last
+            if (totalStages >= 2 && index < totalStages - 1) {
+                const arrow = document.createElement('div');
+                arrow.className = 'evolution-arrow';
+                arrow.innerHTML = '↓';
+                evolutionContainer.appendChild(arrow);
+            }
         });
     } else {
         evolutionContainer.innerHTML = '<p class="no-evolution">This Temtem does not evolve</p>';
