@@ -133,7 +133,7 @@ async function populateDojoDetails(dojo) {
 
 // Function to go back to the previous page
 function goBack() {
-    window.location.href = "/dojos.html";
+    window.location.href = "dojos.html";
 }
 
 // Load dojo data and populate details

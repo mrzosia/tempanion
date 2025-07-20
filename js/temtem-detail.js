@@ -136,7 +136,7 @@ function populateTemtemDetails(temtem) {
 
 // Function to go back to the previous page
 function goBack() {
-    window.location.href = "/index.html"
+    window.location.href = "index.html"
 }
 
 // Load temtem data and populate details

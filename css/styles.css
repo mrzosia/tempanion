@@ -42,10 +42,11 @@ h2 {
 }
 
 .search-bar {
+    background-color: #1a1a1a;
     width: 100%;
     padding: 0.75rem;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #fff;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
     max-width: 600px;
@@ -239,9 +240,9 @@ hr {
 }
 
 .back-button {
-    background-color: #333;
+    background-color: #1a1a1a;
     color: #fff;
-    border: none;
+    border: 1px solid #fff;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
@@ -249,10 +250,14 @@ hr {
     font-size: 14px;
     margin-bottom: 1rem;
     transition: background-color 0.3s;
+    position: relative;
+    top: 0;
+    transition: all 0.3s ease;
 }
 
 .back-button:hover {
-    background-color: #555;
+    background-color: #2f2f2f;
+    transform: translateY(-8px);
 }
 
 .dojo-detail-container, .temtem-detail-container {
@@ -601,7 +606,7 @@ hr {
         max-width: 900px;
         padding: 20px;
     }
-    
+
     .temtem-image-container img, .dojo-image-container img {
         width: 120px;
     }
