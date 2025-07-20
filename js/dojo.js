@@ -2,7 +2,7 @@ let dojoData = [];
 
 const dojoList = document.getElementById("dojo-list");
 
-function renderdojos(data) {
+function renderDojos(data) {
     dojoList.innerHTML = "";
     data.forEach(t => {
         const item = document.createElement("div");
@@ -55,9 +55,9 @@ function renderdojos(data) {
 
 function filterDojos(query) {
     const filtered = dojoData.filter(t => 
-        t.name.toLowerCase().includes(query.toLowerCase())
+        t.leader.name.toLowerCase().includes(query.toLowerCase())
     );
-    renderdojos(filtered);
+    renderDojos(filtered);
 }
 
 window.addEventListener("load", () => {
@@ -73,7 +73,7 @@ window.addEventListener("load", () => {
 
     if (cachedData && cachedExpiry && now < Number(cachedExpiry)) {
         dojoData = JSON.parse(cachedData);
-        renderdojos(dojoData);
+        renderDojos(dojoData);
     } else {
         fetch("data/dojos.json")
             .then(res => res.json())
@@ -81,7 +81,7 @@ window.addEventListener("load", () => {
                 dojoData = data;
                 localStorage.setItem(CACHE_KEY, JSON.stringify(data));
                 localStorage.setItem(EXPIRY_KEY, now + expiryDuration);
-                renderdojos(dojoData);
+                renderDojos(dojoData);
             })
             .catch(err => {
                 console.error("Failed to load dojo data:", err);
