@@ -416,7 +416,7 @@ hr {
 
 .matchup-type {
     background-color: #D9D9D9;
-    border-radius: 5px;
+    border-radius: 20px;
     color: #000;
     padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(0.6rem, 1.2vw, 1rem);
     font-size: 1rem;
@@ -426,8 +426,9 @@ hr {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.25rem;
+    gap: 2px;
     white-space: nowrap;
+    min-width: 7.75rem;
 }
 
 #weak-to .matchup-type {
@@ -440,6 +441,79 @@ hr {
     background-color: rgba(78, 205, 196, .20);;
     border: 1px solid rgba(78, 205, 196, .40);;
     color: #7DD3C0;
+}
+
+/* Multiplier display styling */
+.multiplier {
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 8px;
+    display: inline-block;
+    min-width: 0.9rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced weakness styling */
+#weak-to .matchup-type.super-effective {
+    background-color: rgba(255, 61, 61, 0.30);
+    border: 2px solid rgba(255, 61, 61, 0.60);
+    color: #FF6B6B;
+    box-shadow: 0 0 10px rgba(255, 61, 61, 1);
+}
+
+#weak-to .matchup-type.super-effective .multiplier {
+    background: rgba(255, 61, 61, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 61, 61, 1);
+    font-weight: 600;
+}
+
+#weak-to .matchup-type.effective {
+    background-color: rgba(255, 107, 107, 0.20);
+    border: 1px solid rgba(255, 107, 107, 0.40);
+    color: #FF9999;
+}
+
+#weak-to .matchup-type.effective .multiplier {
+    background: rgba(255, 107, 107, 0.6);
+    color: white;
+    border: 1px solid rgba(255, 107, 107, 0.8);
+}
+
+/* Enhanced resistance styling */
+#resistant-to .matchup-type.super-resistant {
+    background-color: rgba(46, 160, 150, 0.30);
+    border: 2px solid rgba(46, 160, 150, 0.60);
+    color: #4ECDC4;
+    box-shadow: 0 0 10px rgba(46, 160, 150, 1);
+}
+
+#resistant-to .matchup-type.super-resistant .multiplier {
+    background: rgba(46, 160, 150, 0.8);
+    color: white;
+    border: 1px solid rgba(46, 160, 150, 1);
+    font-weight: 600;
+}
+
+#resistant-to .matchup-type.resistant {
+    background-color: rgba(78, 205, 196, 0.20);
+    border: 1px solid rgba(78, 205, 196, 0.40);
+    color: #7DD3C0;
+}
+
+#resistant-to .matchup-type.resistant .multiplier {
+    background: rgba(78, 205, 196, 0.6);
+    color: white;
+    border: 1px solid rgba(78, 205, 196, 0.8);
+}
+
+/* Add some spacing for the multiplier */
+.matchup-type p {
+    margin-right: 5px;
 }
 
 .matchup-type .type-image-container {
@@ -628,7 +702,7 @@ hr {
     
     .matchup-type {
         font-size: 14px;
-        padding: 0.5rem 1rem;
+        padding: 0.5rem;
     }
 }
 
@@ -717,10 +791,6 @@ hr {
     
     .matchup-types {
         justify-content: flex-start;
-    }
-
-    .matchup-type {
-        min-width: 4.75rem;
     }
     
     .matchup-section h3 {

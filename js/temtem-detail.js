@@ -5,14 +5,42 @@ const temtemId = urlParams.get('id');
 let temtemData = [];
 
 // Function to create matchup type element
-function createMatchupType(type) {
+function createMatchupType(type, multiplier = null) {
     const typeElement = document.createElement('div');
     typeElement.className = 'matchup-type';
+    
+    // Add additional classes based on multiplier strength
+    if (multiplier !== null) {
+        if (multiplier >= 4.0) {
+            typeElement.classList.add('super-effective');
+        } else if (multiplier >= 2.0) {
+            typeElement.classList.add('effective');
+        } else if (multiplier <= 0.25) {
+            typeElement.classList.add('super-resistant');
+        } else if (multiplier <= 0.5) {
+            typeElement.classList.add('resistant');
+        }
+    }
+    
+    let multiplierText = '';
+    if (multiplier !== null) {
+        if (multiplier >= 4.0) {
+            multiplierText = '<span class="multiplier">4×</span>';
+        } else if (multiplier >= 2.0) {
+            multiplierText = '<span class="multiplier">2×</span>';
+        } else if (multiplier <= 0.25) {
+            multiplierText = '<span class="multiplier">0.25×</span>';
+        } else if (multiplier <= 0.5) {
+            multiplierText = '<span class="multiplier">0.5×</span>';
+        }
+    }
+    
     typeElement.innerHTML = `
         <div class="type-image-container">
             <img src="images/types/${type}.png"/>
         </div>
         <p>${type}</p>
+        ${multiplierText}
     `;
     return typeElement;
 }
@@ -46,6 +74,57 @@ function createEvolutionStage(evolutionData, isCurrent = false) {
     return evolutionStage;
 }
 
+// Function to populate battle matchups using the weakness data from JSON
+function populateMatchups(temtem) {
+    // Check if weaknesses data exists
+    if (!temtem.weaknesses) {
+        console.error('No weakness data found for this Temtem');
+        return;
+    }
+    
+    const weakToContainer = document.getElementById('weak-to');
+    const resistantToContainer = document.getElementById('resistant-to');
+    
+    weakToContainer.innerHTML = '';
+    resistantToContainer.innerHTML = '';
+    
+    // Separate weaknesses and resistances from the JSON data
+    const weakTypes = [];
+    const resistantTypes = [];
+    
+    Object.entries(temtem.weaknesses).forEach(([type, multiplier]) => {
+        if (multiplier > 1) {
+            weakTypes.push({ type, multiplier });
+        } else if (multiplier < 1) {
+            resistantTypes.push({ type, multiplier });
+        }
+    });
+    
+    // Sort by multiplier strength (highest weakness first, strongest resistance first)
+    weakTypes.sort((a, b) => b.multiplier - a.multiplier);
+    resistantTypes.sort((a, b) => a.multiplier - b.multiplier);
+    
+    // Populate weaknesses
+    if (weakTypes.length > 0) {
+        weakTypes.forEach(({ type, multiplier }) => {
+            const weaknessElement = createMatchupType(type, multiplier);
+            weakToContainer.appendChild(weaknessElement);
+        });
+    } else {
+        weakToContainer.innerHTML = '<p class="no-matchups">No major weaknesses</p>';
+    }
+    
+    // Populate resistances
+    if (resistantTypes.length > 0) {
+        resistantTypes.forEach(({ type, multiplier }) => {
+            const resistanceElement = createMatchupType(type, multiplier);
+            resistantToContainer.appendChild(resistanceElement);
+        });
+    } else {
+        resistantToContainer.innerHTML = '<p class="no-matchups">No major resistances</p>';
+    }
+}
+
 // Function to populate temtem details
 function populateTemtemDetails(temtem) {
     const temtemNumber = String(temtem.number).padStart(3, '0');
@@ -77,46 +156,8 @@ function populateTemtemDetails(temtem) {
         typesContainer.appendChild(typeElement);
     });
     
-    // Populate battle matchups using the weaknesses data
-    const weakToContainer = document.getElementById('weak-to');
-    const resistantToContainer = document.getElementById('resistant-to');
-    
-    weakToContainer.innerHTML = '';
-    resistantToContainer.innerHTML = '';
-    
-    if (temtem.weaknesses) {
-        const weakTypes = [];
-        const resistantTypes = [];
-        
-        // Process weaknesses object
-        Object.entries(temtem.weaknesses).forEach(([type, multiplier]) => {
-            if (multiplier > 1) {
-                weakTypes.push(type);
-            } else if (multiplier < 1) {
-                resistantTypes.push(type);
-            }
-        });
-        
-        // Populate weaknesses
-        if (weakTypes.length > 0) {
-            weakTypes.forEach(type => {
-                const weaknessElement = createMatchupType(type);
-                weakToContainer.appendChild(weaknessElement);
-            });
-        } else {
-            weakToContainer.innerHTML = '<p class="no-matchups">No major weaknesses</p>';
-        }
-        
-        // Populate resistances
-        if (resistantTypes.length > 0) {
-            resistantTypes.forEach(type => {
-                const resistanceElement = createMatchupType(type);
-                resistantToContainer.appendChild(resistanceElement);
-            });
-        } else {
-            resistantToContainer.innerHTML = '<p class="no-matchups">No major resistances</p>';
-        }
-    }
+    // Populate battle matchups using the weakness data from JSON
+    populateMatchups(temtem);
     
     // Populate evolution chain
     const evolutionContainer = document.getElementById('evolution-chain');
