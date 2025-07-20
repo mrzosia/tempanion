@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Detail - Tempanion</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Tempanion</h1>
+            <nav class="site-nav">
+                <a href="index.html">Temtems</a>
+                <a href="dojos.html">Dojos</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <button class="back-button" onclick="goBack()">← Back to list</button>
+        
+        <div class="dojo-detail-container">
+            <div class="dojo-header">
+                <div class="dojo-image-container">
+                    <!-- Dojo Master Image will be populated by JavaScript -->
+                </div>
+                <div class="dojo-info">
+                    <h2 id="dojo-master-name">Loading...</h2>
+                    <p id="dojo-name">Loading...</p>
+                    <div id="dojo-types" class="dojo-types">
+                        <!-- Types will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="temtems-section">
+                <h2>Temtems</h2>
+                <div id="temtem-list" class="temtem-list">
+                    <!-- Temtems will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dojo-detail.js"></script>
+</body>
+</html>

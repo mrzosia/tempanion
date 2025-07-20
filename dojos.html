@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tempanion</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="site-nav">
+                <a href="index.html">Temtems</a>
+            </nav>
+            <h1>Tempanion</h1>
+            <input id="dojo-search" type="text" class="search-bar" placeholder="Start typing to explore the Dojos" oninput="FilterDojos(this.value)">
+        </header>
+        <h2>DOJOS</h2>
+        <div class="dojo-list" id="dojo-list"></div>
+    </div>
+    <script src="js/dojo.js"></script>
+</body>
+</html>

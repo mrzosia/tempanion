@@ -1,0 +1,90 @@
+let dojoData = [];
+
+const dojoList = document.getElementById("dojo-list");
+
+function renderdojos(data) {
+    dojoList.innerHTML = "";
+    data.forEach(t => {
+        const item = document.createElement("div");
+        item.className = "dojo-item";
+        
+        // Make dojo item clickable
+        item.style.cursor = "pointer";
+        item.onclick = () => {
+            const dojoId = t.name.toLowerCase().replace(/\s+/g, '-');
+            window.location.href = `dojo-detail.html?id=${dojoId}`;
+        };
+
+        item.innerHTML = `
+            <div class="dojo-image-container">
+                <img src="images/dojos/${t.leader.name.replace(/[^a-zA-Z]/g, '')}.png" alt="${t.name}">
+            </div>
+            <div class="dojo-details">
+                <div class="dojo-master">${t.leader.name}</div>
+                <div class="dojo-name">${t.name}</div>
+                <div class="dojo-types">
+                ${(() => {
+                    const visibleTypes = t.types.slice(0, 2);
+                    const extraCount = t.types.length - visibleTypes.length;
+
+                    let html = visibleTypes.map(type => `
+                    <div class="dojo-type">
+                        <div class="type-image-container">
+                        <img src="images/types/${type}.png"/>
+                        </div>
+                        <p>${type}</p>
+                    </div>
+                    `).join("");
+
+                    if (extraCount > 0) {
+                    html += `
+                        <div class="dojo-type extra-count">
+                        <p>+${extraCount}</p>
+                        </div>
+                    `;
+                    }
+
+                    return html;
+                })()}
+                </div>
+            </div>
+        `;
+        dojoList.appendChild(item);
+    });
+}
+
+function filterDojos(query) {
+    const filtered = dojoData.filter(t => 
+        t.name.toLowerCase().includes(query.toLowerCase())
+    );
+    renderdojos(filtered);
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo({ top: 0 });
+
+    const CACHE_KEY = "dojoData";
+    const EXPIRY_KEY = "dojoDataExpiry";
+    const expiryDuration = 1000 * 60 * 60 * 24; // 24 hours in ms
+    const now = Date.now();
+
+    const cachedData = localStorage.getItem(CACHE_KEY);
+    const cachedExpiry = localStorage.getItem(EXPIRY_KEY);
+
+    if (cachedData && cachedExpiry && now < Number(cachedExpiry)) {
+        dojoData = JSON.parse(cachedData);
+        renderdojos(dojoData);
+    } else {
+        fetch("data/dojos.json")
+            .then(res => res.json())
+            .then(data => {
+                dojoData = data;
+                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                localStorage.setItem(EXPIRY_KEY, now + expiryDuration);
+                renderdojos(dojoData);
+            })
+            .catch(err => {
+                console.error("Failed to load dojo data:", err);
+            });
+    }
+});

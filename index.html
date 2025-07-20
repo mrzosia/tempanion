@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tempanion</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="site-nav">
+                <a href="dojos.html">Dojos</a>
+            </nav>
+            <h1>Tempanion</h1>
+            <input id="temtem-search" type="text" class="search-bar" placeholder="Start typing to explore the Tempedia" oninput="filterTemtems(this.value)">
+        </header>
+        <h2>TEMTEMS</h2>
+        <div class="temtem-list" id="temtem-list"></div>
+    </div>
+    <script src="js/temtem.js"></script>
+</body>
+</html>
