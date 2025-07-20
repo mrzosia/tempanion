@@ -2,26 +2,26 @@
 
 A comprehensive Temtem companion app for players transitioning from Pokémon or anyone needing a quick reference guide. Tempanion provides instant access to Temtem data, type effectiveness, evolutions, and dojo information - perfect for on-the-go battles and team planning.
 
-## 🎮 Features
+## Features
 
-### 📚 Tempedia
+### Tempedia
 - **Complete Temtem Database**: Browse all Temtem with detailed stats and information
 - **Evolution Chains**: Visual evolution paths and requirements
 - **Type Effectiveness**: Weaknesses and resistances for strategic battle planning
 - **Quick Search & Filter**: Find specific Temtem instantly
 
-### 🏛️ Dojo Guide  
+### Dojo Guide  
 - **Dojo Master Directory**: Complete list of all dojo masters and their specialties
 - **Team Compositions**: View each master's full Temtem lineup with levels
 - **Type Specializations**: Know what to expect before challenging each dojo
 - **Strategic Planning**: Plan your team counters in advance
 
-### ⚡ Built for Speed
+### Built for Speed
 - **Offline-First**: Smart caching system works without internet after initial load
 - **Lightning Fast**: Vanilla JavaScript for maximum performance
 - **Mobile Optimized**: Perfect companion app for handheld gaming
 
-## 🚀 Why Tempanion?
+## Why Tempanion?
 
 Coming from Pokémon? Temtem's type system has some key differences that can catch you off guard. Tempanion makes the transition smooth by providing instant access to:
 
@@ -30,7 +30,7 @@ Coming from Pokémon? Temtem's type system has some key differences that can cat
 - **Dojo master strategies** to help you prepare effective counter-teams
 - **Evolution requirements** that may be more complex than simple leveling
 
-## 📸 Screenshots
+## Screenshots
 
 <!-- Add screenshots of your app -->
 ![Tempedia - Temtem List](images/screenshots/temtems.png)
@@ -38,7 +38,7 @@ Coming from Pokémon? Temtem's type system has some key differences that can cat
 ![Dojo Masters](images/screenshots/dojos.png)
 ![Dojo Team Details](images/screenshots/dojo-details.png)
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **Frontend**: Vanilla JavaScript, HTML5, CSS3
 - **Data Management**: JSON files with localStorage caching
@@ -46,7 +46,7 @@ Coming from Pokémon? Temtem's type system has some key differences that can cat
 - **Design**: Responsive CSS Grid/Flexbox layout
 - **Architecture**: Static web app - no server required
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Tempanion/
@@ -70,7 +70,7 @@ Tempanion/
     └── types/             # Type icons (Mental.png, Fire.png, etc.)
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -97,7 +97,7 @@ Tempanion/
 
 4. Open your browser and visit `http://localhost:8000`
 
-## 💡 Key Features in Detail
+## Key Features in Detail
 
 ### Smart Data Management
 - **Efficient Type Lookups**: O(1) access to type effectiveness data
@@ -117,7 +117,7 @@ Tempanion/
 - **Mobile-First Design**: Perfect for use while gaming on handheld devices
 - **Instant Search**: Find any Temtem or dojo master in milliseconds
 
-## 🎯 Perfect For
+## Perfect For
 
 - **Pokémon Veterans** learning Temtem's unique type system
 - **New Players** who want comprehensive reference material
@@ -127,21 +127,21 @@ Tempanion/
 ### Data Updates
 Replace JSON files in the `data/` folder to update Temtem or dojo information as the game evolves.
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://opensource.org/license/mit) file for details.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 Tempanion is a fan-made companion app. All Temtem game data, images, and assets belong to [Crema Games](https://crema.gg). This project is not affiliated with or endorsed by Crema Games.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Crema Games** for creating the amazing world of Temtem
 - **Temtem Community** for data verification and feedback  
 - **Pokémon Trainers** making the jump to Temtem - this one's for you!
 
-## 📧 Contact
+## Contact
 
 Project Link: [https://github.com/mrzosia/tempanion](https://github.com/mrzosia/tempanion)
 
