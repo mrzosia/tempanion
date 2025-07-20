@@ -87,6 +87,8 @@ h2 {
 .scroll-to-top::before {
     content: "↑";
     font-weight: bold;
+    position: relative;
+    top: -2px;
 }
 
 .temtem-list, .dojo-list {
@@ -739,7 +741,7 @@ hr {
         gap: 0.75rem;
     }
     
-    .temtem-header .temtem-image-container {
+    .temtem-header .temtem-image-container, .dojo-header .dojo-image-container {
         padding-right: 0.75rem;
     }
     
