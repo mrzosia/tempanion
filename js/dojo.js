@@ -15,9 +15,17 @@ function renderDojos(data) {
             window.location.href = `dojo-detail.html?id=${dojoId}`;
         };
 
+        let leaderName = t.leader.name.replace(/[^a-zA-Z]/g, '');
+
         item.innerHTML = `
             <div class="dojo-image-container">
-                <img src="images/dojos/${t.leader.name.replace(/[^a-zA-Z]/g, '')}.png" alt="${t.name}">
+                <img srcset="images/thumbnails/dojos/100/${leaderName}.png 100w,
+                             images/thumbnails/dojos/120/${leaderName}.png 120w,
+                             images/thumbnails/dojos/140/${leaderName}.png 140w"
+                     sizes="(max-width: 480px) 100px,
+                            (max-width: 768px) 120px,
+                            140px 
+                     alt="${t.name}">
             </div>
             <div class="dojo-details">
                 <div class="dojo-master">${t.leader.name}</div>
@@ -30,7 +38,10 @@ function renderDojos(data) {
                     let html = visibleTypes.map(type => `
                     <div class="dojo-type">
                         <div class="type-image-container">
-                        <img src="images/types/${type}.png"/>
+                        <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                                    images/thumbnails/types/24/${type}.png 24w"
+                             sizes="(max-width: 480px) 20px, 24px"
+                             alt="${type}"/>
                         </div>
                         <p>${type}</p>
                     </div>

@@ -58,7 +58,10 @@ function createTemtemItem(temtem) {
     
     temtemItem.innerHTML = `
         <div class="temtem-image-container">
-            <img src="images/temtems/${temtemNumber}.png" alt="${temtem.name}">
+            <img srcset="images/thumbnails/temtems/100/${temtemNumber}.png 100w,
+                            images/thumbnails/temtems/120/${temtemNumber}.png 120w, 
+                            images/thumbnails/temtems/140/${temtemNumber}.png 140w" 
+                            alt="${temtem.name}">
         </div>
         <div class="temtem-details">
             <div class="temtem-name">${temtem.name}</div>
@@ -67,7 +70,10 @@ function createTemtemItem(temtem) {
                 ${temtem.types.map(type => `
                     <div class="temtem-type">
                         <div class="type-image-container">
-                            <img src="images/types/${type}.png"/>
+                            <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                                         images/thumbnails/types/24/${type}.png 24w"
+                                 sizes="(max-width: 480px) 20px, 24px"
+                                 alt="${type}"/>
                         </div>
                         <p>${type}</p>
                     </div>
@@ -84,8 +90,13 @@ async function populateDojoDetails(dojo) {
     let dojoImageContainer = document.getElementsByClassName('dojo-image-container')[0];
     let dojoImage = document.createElement('img');
 
+    let dojoLeaderName = dojo.leader.name.replace(/[^a-zA-Z]/g, '');
+
     dojoImage.id = 'dojo-image';
-    dojoImage.src = `images/dojos/${dojo.leader.name.replace(/[^a-zA-Z]/g, '')}.png`;
+    dojoImage.srcset = `images/thumbnails/dojos/120/${dojoLeaderName}.png 120w,
+                          images/thumbnails/dojos/160/${dojoLeaderName}.png 160w, 
+                          images/thumbnails/dojos/200/${dojoLeaderName}.png 200w`;
+    dojoImage.sizes = "(max-width: 480px) 120px, (max-width: 768px) 160px, 200px"
     dojoImage.alt = dojo.leader.name;
     dojoImageContainer.appendChild(dojoImage);
 
@@ -101,7 +112,10 @@ async function populateDojoDetails(dojo) {
         typeElement.className = 'dojo-type';
         typeElement.innerHTML = `
             <div class="type-image-container">
-                <img src="images/types/${type}.png"/>
+                <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                             images/thumbnails/types/24/${type}.png 24w"
+                     sizes="(max-width: 480px) 20px, 24px"
+                     alt="${type}"/>
             </div>
             <p>${type}</p>
         `;

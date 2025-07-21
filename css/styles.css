@@ -116,8 +116,8 @@ h2 {
 
 .temtem-image-container, .dojo-image-container {
     flex-shrink: 0;
-    width: clamp(100px, 12vw, 160px);
-    height: clamp(100px, 12vw, 160px);
+    width: 140px;
+    height: 140px;
 }
 
 .temtem-image-container img, .dojo-image-container img {
@@ -129,8 +129,6 @@ h2 {
 }
 
 .dojo-image-container {
-    width: clamp(80px, 12vw, 120px);
-    height: clamp(80px, 12vw, 120px);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -236,13 +234,14 @@ h2 {
 
 .type-image-container {
     display: inline-block;
-    height: clamp(20px, 3vw, 24px);
+    height: 24px;
     vertical-align: middle;
-    width: clamp(20px, 3vw, 24px);
+    width: 24px;
 }
 
 .type-image-container > img {
     height: 100%;
+    object-fit: none;
     width: 100%;
 }
 
@@ -325,8 +324,8 @@ hr {
 
 .dojo-header .dojo-image-container, .temtem-header .temtem-image-container {
     border-right: 1px solid #D9D9D9;
-    width: clamp(120px, 20vw, 200px);
-    height: clamp(120px, 20vw, 200px);
+    width: 200px;
+    height: 200px;
     flex-shrink: 0;
     padding-right: 1rem;
 }
@@ -517,8 +516,8 @@ hr {
 }
 
 .matchup-type .type-image-container {
-    width: clamp(1rem, 2vw, 20px);
-    height: clamp(1rem, 2vw, 20px);
+    width: 24px;
+    height: 24px;
 }
 
 .matchup-type p {
@@ -583,8 +582,8 @@ hr {
 }
 
 .evolution-image-container {
-    width: clamp(80px, 8vw, 100px);
-    height: clamp(80px, 8vw, 100px);
+    width: 100px;
+    height: 100px;
     position: relative;
     flex-shrink: 0;
 }
@@ -662,6 +661,11 @@ hr {
         max-width: 80vw;
         padding: 2rem;
     }
+
+    .evolution-image-container {
+        width: 120px;
+        height: 120px;
+    }
     
     .temtem-list, .dojo-list {
         display: grid;
@@ -678,10 +682,6 @@ hr {
     
     .temtem-item, .dojo-item {
         padding: 1rem;
-    }
-    
-    .temtem-image-container img, .dojo-image-container img {
-        width: 140px;
     }
     
     .temtem-name, .dojo-master {
@@ -706,68 +706,14 @@ hr {
     }
 }
 
-@media (min-width: 992px) and (max-width: 1199px) {
-    .container {
-        max-width: 1100px;
-        padding: 25px;
-    }
-    
-    .temtem-list, .dojo-list {
-        gap: 12px;
-    }
-    
-    .temtem-item, .dojo-item {
-        padding: 0.75rem;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 991px) {
-    .container {
-        max-width: 900px;
-        padding: 20px;
-    }
-
-    .temtem-image-container img, .dojo-image-container img {
-        width: 120px;
-    }
-    
-    .temtem-name, .dojo-master {
-        font-size: 19px;
-    }
-}
-
-@media (max-width: 768px) {
-    .back-button {
-       font-size: 0.9rem;
-       padding: 0.6rem 1rem;
-       gap: 0.3rem;
-       -webkit-font-smoothing: antialiased;
-       -moz-osx-font-smoothing: grayscale;
-    }
-   
-    .back-button .arrow {
-       font-size: 1.1rem;
-    }
-
+@media (max-width: 1200px) {
     .container {
         padding: 0 1rem;
     }
 
-    .current-badge {
-        top: -23px;
-    }
-    
-    .dojo-header .dojo-image-container, .temtem-header .temtem-image-container {
-        width: 120px;
-        height: 120px;
-    }
-    
-    .dojo-info h2, .temtem-info h2 {
-        font-size: 24px;
-    }
-    
-    .dojo-info p, .temtem-info p {
-        font-size: 1rem;
+    .evolution-image-container {
+        height: 100px;
+        width: 100px;
     }
 
     #evolution-chain {
@@ -788,6 +734,42 @@ hr {
     .evolution-name {
         font-size: 1rem;
     }
+}
+
+@media (max-width: 768px) {
+    .back-button {
+       font-size: 0.9rem;
+       padding: 0.6rem 1rem;
+       gap: 0.3rem;
+       -webkit-font-smoothing: antialiased;
+       -moz-osx-font-smoothing: grayscale;
+    }
+   
+    .back-button .arrow {
+       font-size: 1.1rem;
+    }
+
+    .current-badge {
+        top: -23px;
+    }
+    
+    .dojo-header .dojo-image-container, .temtem-header .temtem-image-container {
+        width: 160px;
+        height: 160px;
+    }
+
+    .temtem-image-container, .dojo-image-container {
+        height: 120px;
+        width: 120px;
+    }
+    
+    .dojo-info h2, .temtem-info h2 {
+        font-size: 24px;
+    }
+    
+    .dojo-info p, .temtem-info p {
+        font-size: 1rem;
+    }
     
     .matchup-types {
         justify-content: flex-start;
@@ -806,6 +788,11 @@ hr {
 }
 
 @media (max-width: 480px) {
+    .evolution-image-container {
+        height: 80px;
+        width: 80px;
+    }
+
     .temtem-item, .dojo-item {
         padding: 0.5rem;
     }
@@ -814,11 +801,15 @@ hr {
         gap: 0.75rem;
     }
     
-    .temtem-header .temtem-image-container, .dojo-header .dojo-image-container {
+    .temtem-header .temtem-image-container, .dojo-header .dojo-image-container,
+    .temtem-image-container, .dojo-image-container {
+        height: 120px;
+        width: 120px;
         padding-right: 0.75rem;
     }
-    
-    .temtem-image-container img, .dojo-image-container img {
+
+    .temtem-image-container, .dojo-image-container {
+        height: 100px;
         width: 100px;
     }
     
@@ -828,6 +819,16 @@ hr {
     
     .temtem-number, .dojo-name {
         font-size: 0.9rem;
+    }
+
+    .type-image-container {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .matchup-type .type-image-container {
+        height: 24px;
+        width: 24px;
     }
     
     .back-button {

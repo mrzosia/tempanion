@@ -18,7 +18,12 @@ function renderTemtems(data) {
 
         item.innerHTML = `
             <div class="temtem-image-container">
-                <img src="images/temtems/${temtemNumber}.png" alt="${t.name}">
+                <img srcset="images/thumbnails/temtems/100/${temtemNumber}.png 100w,
+                             images/thumbnails/temtems/120/${temtemNumber}.png 120w,
+                             images/thumbnails/temtems/140/${temtemNumber}.png 140w"
+                     sizes="(max-width: 480px) 100px,
+                            (max-width: 768px) 120px,
+                            140px alt="${t.name}">
             </div>
             <div class="temtem-details">
                 <div class="temtem-name">${t.name}</div>
@@ -27,7 +32,10 @@ function renderTemtems(data) {
                     ${t.types.map(type => 
                         `<div class="temtem-type">
                             <div class="type-image-container">
-                                <img src="images/types/${type}.png"/>
+                                <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                                             images/thumbnails/types/24/${type}.png 24w"
+                                     sizes="(max-width: 480px) 20px, 24px"
+                                     alt="${type}"/>
                             </div>
                             <p>${type}</p>
                         </div>`).join("")}

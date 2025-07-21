@@ -37,7 +37,10 @@ function createMatchupType(type, multiplier = null) {
     
     typeElement.innerHTML = `
         <div class="type-image-container">
-            <img src="images/types/${type}.png"/>
+            <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                         images/thumbnails/types/24/${type}.png 24w"
+                 sizes="(max-width: 480px) 20px, 24px"
+                 alt="${type}"/>
         </div>
         <p>${type}</p>
         ${multiplierText}
@@ -54,7 +57,11 @@ function createEvolutionStage(evolutionData, isCurrent = false) {
     
     evolutionStage.innerHTML = `
         <div class="evolution-image-container">
-            <img src="images/temtems/${temtemNumber}.png" alt="${evolutionData.name}">
+            <img srcset="images/thumbnails/temtems/80/${temtemNumber}.png 80w,
+                          images/thumbnails/temtems/100/${temtemNumber}.png 100w, 
+                          images/thumbnails/temtems/120/${temtemNumber}.png 120w" 
+                          alt="${evolutionData.name}">
+            
             ${isCurrent ? '<div class="current-badge">Current</div>' : ''}
         </div>
         <div class="evolution-info">
@@ -133,8 +140,11 @@ function populateTemtemDetails(temtem) {
     let temtemImage = document.createElement('img');
     
     temtemImage.id = 'temtem-image';
-    temtemImage.src = `images/temtems/${temtemNumber}.png`;
     temtemImage.alt = temtem.name;
+    temtemImage.srcset = `images/thumbnails/temtems/120/${temtemNumber}.png 120w,
+                          images/thumbnails/temtems/160/${temtemNumber}.png 160w, 
+                          images/thumbnails/temtems/200/${temtemNumber}.png 200w`;
+    temtemImage.sizes = "(max-width: 480px) 120px, (max-width: 768px) 160px, 200px"
     temtemImageContainer.appendChild(temtemImage);
     
     document.getElementById('temtem-name').textContent = temtem.name;
@@ -149,7 +159,10 @@ function populateTemtemDetails(temtem) {
         typeElement.className = 'temtem-type';
         typeElement.innerHTML = `
             <div class="type-image-container">
-                <img src="images/types/${type}.png"/>
+                <img srcset="images/thumbnails/types/20/${type}.png 20w,
+                             images/thumbnails/types/24/${type}.png 24w"
+                     sizes="(max-width: 480px) 20px, 24px"
+                     alt="${type}"/>
             </div>
             <p>${type}</p>
         `;
