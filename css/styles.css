@@ -549,7 +549,7 @@ hr {
 .matchup-types {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.5rem 0.15rem;
 }
 
 .matchup-type {
