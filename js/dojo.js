@@ -86,7 +86,7 @@ window.addEventListener("load", () => {
         dojoData = JSON.parse(cachedData);
         renderDojos(dojoData);
     } else {
-        fetch("data/dojos.json?v=1.3")
+        fetch("data/dojos.json?v=1.4")
             .then(res => res.json())
             .then(data => {
                 dojoData = data;

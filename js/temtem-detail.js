@@ -212,6 +212,130 @@ function populateTemtemDetails(temtem) {
     }
 }
 
+// Function to populate techniques section
+function populateTechniques(temtem) {
+    console.log(temtem);
+    const techniquesContainer = document.getElementById('techniques-list');
+    techniquesContainer.innerHTML = '';
+    
+    if (!temtem.techniques || temtem.techniques.length === 0) {
+        techniquesContainer.innerHTML = '<p class="no-techniques">No techniques available</p>';
+        return;
+    }
+    
+    // Separate techniques by source
+    const levelingTechniques = [];
+    const courseTechniques = [];
+    const breedingTechniques = [];
+    const otherTechniques = [];
+    
+    temtem.techniques.forEach(technique => {
+        switch (technique.source) {
+            case 'Levelling':
+                levelingTechniques.push(technique);
+                break;
+            case 'TechniqueCourses':
+                courseTechniques.push(technique);
+                break;
+            case 'Breeding':
+                breedingTechniques.push(technique);
+                break;
+            default:
+                otherTechniques.push(technique);
+                break;
+        }
+    });
+    
+    // Sort leveling techniques by level
+    levelingTechniques.sort((a, b) => (a.levels || 0) - (b.levels || 0));
+    
+    // Function to create technique element
+    function createTechniqueElement(technique) {
+        const techniqueElement = document.createElement('div');
+        techniqueElement.className = 'technique-item';
+        
+        let levelInfo = '';
+        if (technique.levels) {
+            levelInfo = `<span class="technique-level">Lv. ${technique.levels}</span>`;
+        }
+        
+        techniqueElement.innerHTML = `
+            <div class="technique-name">${technique.name}</div>
+            ${levelInfo}
+        `;
+        
+        return techniqueElement;
+    }
+    
+    // Add leveling techniques
+    if (levelingTechniques.length > 0) {
+        const levelingSection = document.createElement('div');
+        levelingSection.className = 'technique-source-section';
+        levelingSection.innerHTML = '<h4 class="technique-source-title">Leveling</h4>';
+        
+        const levelingList = document.createElement('div');
+        levelingList.className = 'technique-list';
+        
+        levelingTechniques.forEach(technique => {
+            levelingList.appendChild(createTechniqueElement(technique));
+        });
+        
+        levelingSection.appendChild(levelingList);
+        techniquesContainer.appendChild(levelingSection);
+    }
+    
+    // Add technique course techniques
+    if (courseTechniques.length > 0) {
+        const courseSection = document.createElement('div');
+        courseSection.className = 'technique-source-section';
+        courseSection.innerHTML = '<h4 class="technique-source-title">Technique Courses</h4>';
+        
+        const courseList = document.createElement('div');
+        courseList.className = 'technique-list';
+        
+        courseTechniques.forEach(technique => {
+            courseList.appendChild(createTechniqueElement(technique));
+        });
+        
+        courseSection.appendChild(courseList);
+        techniquesContainer.appendChild(courseSection);
+    }
+    
+    // Add breeding techniques
+    if (breedingTechniques.length > 0) {
+        const breedingSection = document.createElement('div');
+        breedingSection.className = 'technique-source-section';
+        breedingSection.innerHTML = '<h4 class="technique-source-title">Breeding</h4>';
+        
+        const breedingList = document.createElement('div');
+        breedingList.className = 'technique-list';
+        
+        breedingTechniques.forEach(technique => {
+            breedingList.appendChild(createTechniqueElement(technique));
+        });
+        
+        breedingSection.appendChild(breedingList);
+        techniquesContainer.appendChild(breedingSection);
+    }
+    
+    // Add other techniques
+    if (otherTechniques.length > 0) {
+        const otherSection = document.createElement('div');
+        otherSection.className = 'technique-source-section';
+        otherSection.innerHTML = '<h4 class="technique-source-title">Other</h4>';
+        
+        const otherList = document.createElement('div');
+        otherList.className = 'technique-list';
+        
+        otherTechniques.forEach(technique => {
+            otherList.appendChild(createTechniqueElement(technique));
+        });
+        
+        otherSection.appendChild(otherList);
+        techniquesContainer.appendChild(otherSection);
+    }
+}
+
 // Function to go back to the previous page
 function goBack() {
     sessionStorage.setItem('backButtonClicked', 'true');
@@ -254,12 +378,13 @@ window.addEventListener("load", () => {
         const temtem = temtemData.find(t => t.number == temtemId);
         if (temtem) {
             populateTemtemDetails(temtem);
+            populateTechniques(temtem);
         } else {
             document.getElementById('temtem-name').textContent = 'Temtem not found';
             document.getElementById('temtem-number').textContent = 'Please go back and try again';
         }
     } else {
-        fetch("data/temtems.json?v=1.3")
+        fetch("data/all-temtems-data.json?v=1.4")
             .then(res => res.json())
             .then(data => {
                 temtemData = data;
@@ -269,6 +394,7 @@ window.addEventListener("load", () => {
                 const temtem = temtemData.find(t => t.number == temtemId);
                 if (temtem) {
                     populateTemtemDetails(temtem);
+                    populateTechniques(temtem);
                 } else {
                     document.getElementById('temtem-name').textContent = 'Temtem not found';
                     document.getElementById('temtem-number').textContent = 'Please go back and try again';

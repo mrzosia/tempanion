@@ -68,7 +68,7 @@ window.addEventListener("load", () => {
         temtemData = JSON.parse(cachedData);
         renderTemtems(temtemData);
     } else {
-        fetch("data/temtems.json?v=1.3")
+        fetch("data/all-temtems-data.json?v=1.4")
             .then(res => res.json())
             .then(data => {
                 temtemData = data;

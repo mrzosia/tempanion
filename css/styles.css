@@ -28,19 +28,18 @@ header.sticky {
     z-index: 1;
 }
 
-header > h2 {
-    margin-top: 0.25rem;
-}
-
 h1 {
     text-align: center;
     font-family: 'Fredoka', sans-serif;
+    font-size: clamp(32px, 4vw, 42px);
     font-weight: 500;
+    margin-bottom: 0.5rem;
 }
 
 h2 {
     font-family: 'Inter', sans-serif;
     font-weight: bold;
+    font-size: clamp(24px, 4vw, 32px);
 }
 
 .search-bar {
@@ -374,8 +373,6 @@ hr {
 
 .temtems-section h2 {
     margin-bottom: 1rem;
-    text-align: center;
-    font-size: 24px;
 }
 
 .battle-matchups {
@@ -384,8 +381,6 @@ hr {
 
 .battle-matchups h2 {
     margin-bottom: 1rem;
-    text-align: center;
-    font-size: 24px;
 }
 
 .matchup-section {
@@ -538,8 +533,6 @@ hr {
 
 .evolution-section h2 {
     margin-bottom: 1rem;
-    text-align: center;
-    font-size: 24px;
 }
 
 #evolution-chain {
@@ -645,6 +638,59 @@ hr {
     font-size: 1rem;
 }
 
+.techniques-section {
+    margin-top: 2rem;
+}
+
+.technique-source-section {
+    margin-bottom: 1.5rem;
+}
+
+.technique-source-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.technique-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 0.5rem;
+}
+
+.technique-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: #252525;
+    border-radius: 3px;
+    border-left: 3px solid #4ECDC4;
+}
+
+.technique-name {
+    font-weight: 500;
+}
+
+.technique-level {
+    background: #4ECDC4;
+    color: #000;
+    padding: 0.25rem 0.5rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.no-techniques {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 2rem;
+}
+
 .temtem-item:hover, .dojo-item:hover {
     background-color: #444;
     cursor: pointer;
@@ -682,10 +728,6 @@ hr {
     
     .temtem-item, .dojo-item {
         padding: 1rem;
-    }
-    
-    .temtem-name, .dojo-master {
-        font-size: 20px;
     }
     
     .temtem-number, .dojo-name {
@@ -763,10 +805,6 @@ hr {
         width: 120px;
     }
     
-    .dojo-info h2, .temtem-info h2 {
-        font-size: 24px;
-    }
-    
     .dojo-info p, .temtem-info p {
         font-size: 1rem;
     }
@@ -811,10 +849,6 @@ hr {
     .temtem-image-container, .dojo-image-container {
         height: 100px;
         width: 100px;
-    }
-    
-    .temtem-name, .dojo-master {
-        font-size: 1rem;
     }
     
     .temtem-number, .dojo-name {
