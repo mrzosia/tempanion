@@ -367,13 +367,23 @@ window.addEventListener("load", () => {
 
     const CACHE_KEY = "temtemData";
     const EXPIRY_KEY = "temtemDataExpiry";
+    const VERSION_KEY = "temtemDataVersion";
+    
+    const DATA_VERSION = "1.5"; // // Update this number with JSON file changes
     const expiryDuration = 1000 * 60 * 60 * 24; // 24 hours in ms
     const now = Date.now();
 
     const cachedData = localStorage.getItem(CACHE_KEY);
     const cachedExpiry = localStorage.getItem(EXPIRY_KEY);
+    const cachedVersion = localStorage.getItem(VERSION_KEY);
 
-    if (cachedData && cachedExpiry && now < Number(cachedExpiry)) {
+    // Check if cache is valid (not expired AND same version)
+    const isCacheValid = cachedData && 
+                        cachedExpiry && 
+                        now < Number(cachedExpiry) && 
+                        cachedVersion === DATA_VERSION;
+
+    if (isCacheValid) {
         temtemData = JSON.parse(cachedData);
         const temtem = temtemData.find(t => t.number == temtemId);
         if (temtem) {
@@ -384,12 +394,19 @@ window.addEventListener("load", () => {
             document.getElementById('temtem-number').textContent = 'Please go back and try again';
         }
     } else {
-        fetch("data/all-temtems-data.json?v=1.4")
+        // Clear old cache when version changes
+        if (cachedVersion !== DATA_VERSION) {
+            localStorage.removeItem(CACHE_KEY);
+            localStorage.removeItem(EXPIRY_KEY);
+        }
+
+        fetch(`data/all-temtems-data.json?v=${DATA_VERSION}`)
             .then(res => res.json())
             .then(data => {
                 temtemData = data;
                 localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-                localStorage.setItem(EXPIRY_KEY, now + expiryDuration);
+                localStorage.setItem(EXPIRY_KEY, (now + expiryDuration).toString());
+                localStorage.setItem(VERSION_KEY, DATA_VERSION);
                 
                 const temtem = temtemData.find(t => t.number == temtemId);
                 if (temtem) {

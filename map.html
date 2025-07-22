@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temtem Detail - Tempanion</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tempanion</title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6DS7J6NHWD"></script>
@@ -15,9 +15,10 @@
         gtag('config', 'G-6DS7J6NHWD');
     </script>
 
-    <link rel="stylesheet" href="css/styles.css?v=1.5">
+    <link rel="stylesheet" href="css/styles.css?v=1.4" />
 </head>
 <body>
+    <div class="container">
     <!-- HTML Structure -->
     <header>
         <div class="header-content">
@@ -27,7 +28,7 @@
             <nav class="desktop-nav">
                 <a href="index.html">Temtems</a>
                 <a href="dojos.html">Dojos</a>
-                <a href="map.html">Map</a>
+                <a href="map.html" class="active">Map</a>
             </nav>
             
             <!-- Search bar (only show on homepage) -->
@@ -58,7 +59,7 @@
             </svg>
             <span class="nav-label">Dojos</span>
         </a>
-        <a href="map.html" class="nav-item">
+        <a href="map.html" class="nav-item active">
             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
             </svg>
@@ -66,60 +67,14 @@
         </a>
     </nav>
 
-    <div class="container main">
-        <button class="back-button" onclick="goBack()">
-            <span class="arrow">‹</span>
-            <span>Back</span>
-        </button>
-        
-        <div class="temtem-detail-container">
-            <div class="temtem-header">
-                <div class="temtem-image-container">
-                    <!-- Temtem Image will be populated by JavaScript -->
-                </div>
-                <div class="temtem-info">
-                    <h2 id="temtem-name">Loading...</h2>
-                    <p id="temtem-number">Loading...</p>
-                    <div id="temtem-types" class="temtem-types">
-                        <!-- Types will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="battle-matchups">
-                <h2>Battle Matchups</h2>
-                
-                <div class="matchup-section weak-to">
-                    <h3>WEAK TO</h3>
-                    <div id="weak-to" class="matchup-types">
-                        <!-- Weak to types will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="matchup-section resistant-to">
-                    <h3>RESISTANT TO</h3>
-                    <div id="resistant-to" class="matchup-types">
-                        <!-- Resistant to types will be populated by JavaScript -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="evolution-section">
-                <h2>Evolution</h2>
-                <div id="evolution-chain" class="evolution-chain">
-                    <!-- Evolution chain will be populated by JavaScript -->
-                </div>
-            </div>
-
-            <div class="techniques-section">
-                <h2>Techniques</h2>
-                <div id="techniques-list" class="techniques-list">
-                    <!-- Techniques will be populated by JavaScript -->
-                </div>
-            </div>
-        </div>
+    <div class="container map">
+        <h2>TEMTEM WORLD MAP</h2>
+        <iframe
+            src="https://mapgenie.io/temtem/maps/airborne-archipelago"
+            height="600"
+            style="width: 100%; border: none; border-radius: 10px;">
+        </iframe>
     </div>
-
-    <script src="js/temtem-detail.js?v=1.5"></script>
+  </div>
 </body>
 </html>

@@ -93,9 +93,9 @@ async function populateDojoDetails(dojo) {
     let dojoLeaderName = dojo.leader.name.replace(/[^a-zA-Z]/g, '');
 
     dojoImage.id = 'dojo-image';
-    dojoImage.srcset = `images/thumbnails/dojos/120/${dojoLeaderName}.png 120w,
-                          images/thumbnails/dojos/160/${dojoLeaderName}.png 160w, 
-                          images/thumbnails/dojos/200/${dojoLeaderName}.png 200w`;
+    dojoImage.srcset = `images/thumbnails/dojos/ai/${dojoLeaderName}.png 120w,
+                          images/thumbnails/dojos/ai/${dojoLeaderName}.png 160w, 
+                          images/thumbnails/dojos/ai/${dojoLeaderName}.png 200w`;
     dojoImage.sizes = "(max-width: 480px) 120px, (max-width: 768px) 160px, 200px"
     dojoImage.alt = dojo.leader.name;
     dojoImageContainer.appendChild(dojoImage);
@@ -177,13 +177,23 @@ window.addEventListener("load", () => {
 
     const CACHE_KEY = "dojoData";
     const EXPIRY_KEY = "dojoDataExpiry";
+    const VERSION_KEY = "dojoDataVersion";
+    
+    const DATA_VERSION = "1.5"; // Update this number with JSON file changes
     const expiryDuration = 1000 * 60 * 60 * 24; // 24 hours in ms
     const now = Date.now();
 
     const cachedData = localStorage.getItem(CACHE_KEY);
     const cachedExpiry = localStorage.getItem(EXPIRY_KEY);
+    const cachedVersion = localStorage.getItem(VERSION_KEY);
 
-    if (cachedData && cachedExpiry && now < Number(cachedExpiry)) {
+    // Check if cache is valid (not expired AND same version)
+    const isCacheValid = cachedData && 
+                        cachedExpiry && 
+                        now < Number(cachedExpiry) && 
+                        cachedVersion === DATA_VERSION;
+
+    if (isCacheValid) {
         dojoData = JSON.parse(cachedData);
         const dojo = dojoData.find(d => d.name.toLowerCase().replace(/\s+/g, '-') === dojoId);
         if (dojo) {
@@ -193,12 +203,19 @@ window.addEventListener("load", () => {
             document.getElementById('dojo-name').textContent = 'Please go back and try again';
         }
     } else {
-        fetch("data/dojos.json?v=1.4")
+        // Clear old cache when version changes
+        if (cachedVersion !== DATA_VERSION) {
+            localStorage.removeItem(CACHE_KEY);
+            localStorage.removeItem(EXPIRY_KEY);
+        }
+
+        fetch(`data/dojos.json?v=${DATA_VERSION}`)
             .then(res => res.json())
             .then(data => {
                 dojoData = data;
                 localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-                localStorage.setItem(EXPIRY_KEY, now + expiryDuration);
+                localStorage.setItem(EXPIRY_KEY, (now + expiryDuration).toString());
+                localStorage.setItem(VERSION_KEY, DATA_VERSION);
                 
                 const dojo = dojoData.find(d => d.name.toLowerCase().replace(/\s+/g, '-') === dojoId);
                 if (dojo) {

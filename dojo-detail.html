@@ -15,18 +15,56 @@
         gtag('config', 'G-6DS7J6NHWD');
     </script>
 
-    <link rel="stylesheet" href="css/styles.css?v=1.4">
+    <link rel="stylesheet" href="css/styles.css?v=1.5">
 </head>
 <body>
+    <!-- HTML Structure -->
     <header>
-        <div class="container">
+        <div class="header-content">
             <h1>Tempanion</h1>
-            <nav class="site-nav">
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
                 <a href="index.html">Temtems</a>
                 <a href="dojos.html">Dojos</a>
+                <a href="map.html">Map</a>
             </nav>
+            
+            <!-- Search bar (only show on homepage) -->
+            <input id="temtem-search" type="text" class="search-bar" placeholder="Start typing to explore the Dojos" oninput="filterDojos(this.value)">
         </div>
     </header>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="nav-label">Temtems</span>
+        </a>
+        <a href="dojos.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg">
+                <!-- Sword 1 -->
+                <path d="M4 20L20 4" />
+                <path d="M3 19L5 21" />
+                <path d="M7 17L9 19" />
+
+                <!-- Sword 2 -->
+                <path d="M4 4L20 20" />
+                <path d="M19 19L21 21" />
+                <path d="M15 17L17 19" />
+            </svg>
+            <span class="nav-label">Dojos</span>
+        </a>
+        <a href="map.html" class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+            </svg>
+            <span class="nav-label">Map</span>
+        </a>
+    </nav>
 
     <div class="container main">
         <button class="back-button" onclick="goBack()">
@@ -57,6 +95,6 @@
         </div>
     </div>
 
-    <script src="js/dojo-detail.js?v=1.4"></script>
+    <script src="js/dojo-detail.js?v=1.5"></script>
 </body>
 </html>
