@@ -49,7 +49,7 @@ function createMatchupType(type, multiplier = null) {
 }
 
 // Function to create evolution stage
-function createEvolutionStage(evolutionData, isCurrent = false) {
+function createEvolutionStage(evolutionData, isCurrent = false, levelsToNextStage = null) {
     const evolutionStage = document.createElement('div');
     evolutionStage.className = `evolution-stage ${isCurrent ? 'current' : ''}`;
     
@@ -78,11 +78,12 @@ function createEvolutionStage(evolutionData, isCurrent = false) {
         };
     }
 
-    if (evolutionData.level !== 0) {
+    // Show levels required to reach the NEXT stage (now using the passed parameter)
+    if (levelsToNextStage && levelsToNextStage !== 0) {
         const evolutionInfo = evolutionStage.querySelector('.evolution-info');
         const levels = document.createElement('div');
         levels.className = 'evolution-stage-text';
-        levels.innerText = `Levels to Evolve: ${evolutionData.level}`;
+        levels.innerText = `Levels to Evolve: ${levelsToNextStage}`;
         evolutionInfo.appendChild(levels);
     }
     
@@ -190,7 +191,12 @@ function populateTemtemDetails(temtem) {
         
         evolutionTree.forEach((evolution, index) => {
             const isCurrent = evolution.number === temtem.number;
-            const evolutionStage = createEvolutionStage(evolution, isCurrent);
+            
+            // Get the level requirement from the NEXT stage
+            const nextStage = evolutionTree[index + 1];
+            const levelsToNextStage = nextStage ? nextStage.level : null;
+            
+            const evolutionStage = createEvolutionStage(evolution, isCurrent, levelsToNextStage);
             evolutionContainer.appendChild(evolutionStage);
             
             // Add arrow after each stage except the last
