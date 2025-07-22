@@ -259,7 +259,7 @@ window.addEventListener("load", () => {
             document.getElementById('temtem-number').textContent = 'Please go back and try again';
         }
     } else {
-        fetch("data/temtems.json?v=1.2")
+        fetch("data/temtems.json?v=1.3")
             .then(res => res.json())
             .then(data => {
                 temtemData = data;

@@ -193,7 +193,7 @@ window.addEventListener("load", () => {
             document.getElementById('dojo-name').textContent = 'Please go back and try again';
         }
     } else {
-        fetch("data/dojos?v=1.2.json")
+        fetch("data/dojos?v=1.3.json")
             .then(res => res.json())
             .then(data => {
                 dojoData = data;
