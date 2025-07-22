@@ -77,6 +77,14 @@ function createEvolutionStage(evolutionData, isCurrent = false) {
             window.location.href = `temtem-detail.html?id=${evolutionData.number}`;
         };
     }
+
+    if (evolutionData.level !== 0) {
+        const evolutionInfo = evolutionStage.querySelector('.evolution-info');
+        const levels = document.createElement('div');
+        levels.className = 'evolution-stage-text';
+        levels.innerText = `Levels to Evolve: ${evolutionData.level}`;
+        evolutionInfo.appendChild(levels);
+    }
     
     return evolutionStage;
 }

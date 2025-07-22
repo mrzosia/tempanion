@@ -427,7 +427,7 @@ hr {
     justify-content: center;
     gap: 2px;
     white-space: nowrap;
-    min-width: 7.75rem;
+    min-width: 8.35rem;
 }
 
 #weak-to .matchup-type {
@@ -624,7 +624,7 @@ hr {
 }
 
 .evolution-stage-text {
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #aaa;
     font-family: 'Inter', sans-serif;
     line-height: 1.3;
